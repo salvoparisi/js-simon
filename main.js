@@ -1,11 +1,15 @@
 let num = []
+let rndNum;
 let verifyNum = []
-let sec = 3;
+let sec = 30;
 let countDownPar = document.getElementById('count-down')
 let allPage = document.getElementById('all')
 
 for(let i=0; i<5; i++){
-    num[i] = Math.floor(Math.random() * 100) + 1;
+    rndNum = Math.floor(Math.random() * 100) + 1;
+    if(!num.includes(rndNum)){
+        num.push(rndNum)
+    }
 }
 
 console.log(num);
@@ -27,14 +31,14 @@ function countDown(){
         countDownPar.innerHTML = 'Scrivi i numeri che ti ricordi'
         clearInterval(clock)
     }else{
-        countDownPar.innerHTML = `i numero scompariranno tra: ${sec}` 
+        countDownPar.innerHTML = `i numeri scompariranno tra: ${sec}` 
         sec--
     }
 }
 
 let verifyNumber=[]
 
-setTimeout(readingBottone, 4000)
+setTimeout(readingBottone, 31000)
 function readingBottone(){
     let bottone = document.getElementById('bottone')
     bottone.addEventListener('click', function(){
@@ -62,6 +66,13 @@ function readingBottone(){
         }else if (guessNum.length==5){
             allPage.innerHTML = `Hai indonivato tutti i numeri: ${guessNum}`
         }
+
+        let reload =document.getElementById('reload')
+        reload.innerHTML='<button id="reloadBottone">Clicca qui per un altra partita</button>'
+        let reloadBottone=document.getElementById('reloadBottone')
+        reloadBottone.addEventListener('click', function(){
+            location.reload();
+        })
 
 
     })
